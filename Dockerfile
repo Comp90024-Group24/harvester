@@ -10,4 +10,5 @@ RUN pip install -r requirements.txt
     
 # CMD ["python3", "Mastodon_demo.py"]
 RUN chmod +x harvest.sh
-CMD ["mpiexec", "-n", "2", "python3", "-m", "mpi4py", "Mastodon_demo.py"]
+CMD ["mpiexec", "--allow-run-as-root", "-n", "2", "python3", "-m", "mpi4py", "Mastodon_demo.py"]
+
