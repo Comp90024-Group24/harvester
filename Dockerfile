@@ -10,4 +10,4 @@ RUN pip install -r requirements.txt
     
 # CMD ["python3", "Mastodon_demo.py"]
 RUN chmod +x harvest.sh
-CMD ["./harvest.sh"]
+CMD ["/bin/bash","./harvest.sh"]
