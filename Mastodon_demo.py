@@ -15,7 +15,7 @@ def streaming(couch, urls, tokens):
     # size = comm.Get_size()
 
     # indicate the db name
-    db_name = 'mastodon_' + str(urls[rank][17:])
+    db_name = 'mastodon'
 
     # if not exist, create one
     if db_name not in couch:
