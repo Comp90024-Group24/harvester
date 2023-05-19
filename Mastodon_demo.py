@@ -14,6 +14,16 @@ def streaming(urls, tokens, db):
     rank = comm.Get_rank()
     # size = comm.Get_size()
 
+    # indicate the db name
+    # db_name = 'mastodon_' + str(urls[rank][17:])
+    # db_name = 'mastodon_all'
+
+    # # if not exist, create one
+    # if db_name not in couch:
+    #     db = couch.create(db_name)
+    # else:
+    #     db = couch[db_name]
+
     server_url = urls[rank]
     server_token = tokens[rank]
     # optional, better not hardcode here
@@ -78,6 +88,7 @@ def streaming(urls, tokens, db):
                     wanted_json["content"] = doc_json["content"]
                     wanted_json["sentiment_label"],_ = sentiment_analysis(wanted_json["content"])
                     wanted_json["month"] = doc_json["created_at"][5:7]
+                    # doc_id, doc_rev = db.save(wanted_json)
                     db.save(wanted_json)
                     # print(ew)
                     # print(f'{db_name} Document saved with ID: {doc_id} and revision: {doc_rev}')
@@ -106,16 +117,19 @@ if __name__ == "__main__":
     
     # indicate the db name
     db_name = 'mastodon_all_servers'
-
-    # if not exist, create one
-    if db_name not in couch:
-        db = couch.create(db_name)
-    else:
-        db = couch[db_name]
-
+    # db_name = 'mastodon_test'
+    comm = MPI.COMM_WORLD
+    rank = comm.Get_rank()
     MASTODON_ACCESS_TOKENS="Iiuvste6iNApoHM0RX0J5J_w_y-J52KvZYXeFZ7Mztc, JTOka0FBt1Dv3Y5ptiWQ2tIKTX1O4Y58JmH_Ob65HeQ"
     SERVERS_URLS="https://mastodon.social, https://mastodon.au"
-
     mastodon_urls = SERVERS_URLS.split(', ')
     mastodon_tokens = MASTODON_ACCESS_TOKENS.split(', ')
-    streaming(urls=mastodon_urls, tokens=mastodon_tokens, db=db)
+    db = None
+    if rank == 0:
+        # if not exist, create one
+        if db_name not in couch:
+            db = couch.create(db_name)
+        else:
+            db = couch[db_name]
+    if db is not None:
+        streaming(urls=mastodon_urls, tokens=mastodon_tokens, db=db)
