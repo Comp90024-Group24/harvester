@@ -1,2 +1,3 @@
 couchdb
 Mastodon.py
+mpi4py
