@@ -105,14 +105,17 @@ def streaming(couch, urls, tokens):
 if __name__ == "__main__":
     print('start')
     # authentication
-    admin = os.environ['COUCHDB_ADMIN']
-    password = os.environ['COUCHDB_PWD']
-    ip = os.environ['COUCHDB_IP']
+    admin = 'user'
+    password = 'pwd'
+    ip = '172.26.134.204'
     url = f'http://{admin}:{password}@{ip}:5984/'
 
     # get couchdb instance
     couch = couchdb.Server(url)
+    
+    MASTODON_ACCESS_TOKENS="Iiuvste6iNApoHM0RX0J5J_w_y-J52KvZYXeFZ7Mztc, JTOka0FBt1Dv3Y5ptiWQ2tIKTX1O4Y58JmH_Ob65HeQ"
+    SERVERS_URLS="https://mastodon.social, https://mastodon.au"
 
-    mastodon_urls = os.environ['SERVERS_URLS'].split(', ')
-    mastodon_tokens = os.environ['MASTODON_ACCESS_TOKENS'].split(', ')
+    mastodon_urls = SERVERS_URLS.split(', ')
+    mastodon_tokens = MASTODON_ACCESS_TOKENS.split(', ')
     streaming(couch=couch, urls=mastodon_urls, tokens=mastodon_tokens)
