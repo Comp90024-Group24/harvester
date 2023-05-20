@@ -61,27 +61,27 @@ def streaming(urls, tokens, db):
                 'hiring', 'interview', 'resume', 'cv', 'application', 'salary', 'benefits', 'contract', 'promotion',
                 'training',
                 'skills', 'experience', 'office', 'workplace', 'colleague', 'team', 'performance', 'termination',
-                'resignation', 'job security', 'work-life balance', 'human resources',
-                'finance', 'financial', 'bank', 'account', 'money', 'cash', 'wealth', 'rich', 'poor', 'stock',
-                'market', 'investment', 'investor', 'invest', 'trading', 'trade', 'trader', 'stock', 'market',
-                'stock', 'exchange', 'stock', 'broker', 'fund', 'gold', 'silver', 'asset', 'currency', 'banking',
-                'banker', 'interest',
-                'technology', 'tech', 'computer', 'software', 'hardware', 'data', 'internet', 'network', 'program',
-                'code', 'developer', 'coding', 'programming', 'algorithm', 'app', 'application', 'website', 'web',
-                'digital', 'device', 'smartphone', 'mobile', 'phone', 'laptop', 'tablet', 'ipad', 'iphone',
-                'camera', 'robot', 'machine', 'artificial', 'intelligence', 'ai', 'virtual', 'reality', 'vr',
-                'augment', 'ar', 'cloud', 'blockchain', 'cyber', 'security', 'hacker', 'hack', 'privacy',
-                'encryption', 'data', 'science', 'big', 'data', 'analytics', 'database', 'server', 'cloud',
-                'art', 'paint', 'sing', 'dance', 'music', 'film', 'show', 'movie', 'artist', 'dancer', 'cinema', 'design',
-                'photo', 'picture', 'actor', 'story', 'theater', 'theatre', 'poem', 'poetry', 'poet', 'song', 'singer',
-                'band', 'album', 'concert', 'performance', 'exhibition', 'gallery', 'museum', 'creative', 'creativity',
-                'creative', 'art', 'creative', 'artist', 'creative', 'work', 'creative', 'industry',
-                'school', 'college', 'university', 'study', 'student', 'teacher', 'tech', 'education', 'course',
-                'learn', 'class', 'homework', 'assignment', 'exam', 'test', 'grade', 'degree', 'diploma', 'master',
-                'bachelor', 'phd', 'scholarship', 'research', 'academy', 'academic', 'campus', 'tuition', 'tutor',
-                'lecture', 'professor', 'classroom', 'lab', 'laboratory', 'library', 'book', 'textbook', 'notebook', 'note',
-                'paper', 'essay', 'thesis', 'dissertation', 'project'
-            ]
+                'resignation', 'job security', 'work-life balance', 'human resources']
+#                 'finance', 'financial', 'bank', 'account', 'money', 'cash', 'wealth', 'rich', 'poor', 'stock',
+#                 'market', 'investment', 'investor', 'invest', 'trading', 'trade', 'trader', 'stock', 'market',
+#                 'stock', 'exchange', 'stock', 'broker', 'fund', 'gold', 'silver', 'asset', 'currency', 'banking',
+#                 'banker', 'interest',
+#                 'technology', 'tech', 'computer', 'software', 'hardware', 'data', 'internet', 'network', 'program',
+#                 'code', 'developer', 'coding', 'programming', 'algorithm', 'app', 'application', 'website', 'web',
+#                 'digital', 'device', 'smartphone', 'mobile', 'phone', 'laptop', 'tablet', 'ipad', 'iphone',
+#                 'camera', 'robot', 'machine', 'artificial', 'intelligence', 'ai', 'virtual', 'reality', 'vr',
+#                 'augment', 'ar', 'cloud', 'blockchain', 'cyber', 'security', 'hacker', 'hack', 'privacy',
+#                 'encryption', 'data', 'science', 'big', 'data', 'analytics', 'database', 'server', 'cloud',
+#                 'art', 'paint', 'sing', 'dance', 'music', 'film', 'show', 'movie', 'artist', 'dancer', 'cinema', 'design',
+#                 'photo', 'picture', 'actor', 'story', 'theater', 'theatre', 'poem', 'poetry', 'poet', 'song', 'singer',
+#                 'band', 'album', 'concert', 'performance', 'exhibition', 'gallery', 'museum', 'creative', 'creativity',
+#                 'creative', 'art', 'creative', 'artist', 'creative', 'work', 'creative', 'industry',
+#                 'school', 'college', 'university', 'study', 'student', 'teacher', 'tech', 'education', 'course',
+#                 'learn', 'class', 'homework', 'assignment', 'exam', 'test', 'grade', 'degree', 'diploma', 'master',
+#                 'bachelor', 'phd', 'scholarship', 'research', 'academy', 'academic', 'campus', 'tuition', 'tutor',
+#                 'lecture', 'professor', 'classroom', 'lab', 'laboratory', 'library', 'book', 'textbook', 'notebook', 'note',
+#                 'paper', 'essay', 'thesis', 'dissertation', 'project'
+#             ]
             for ew in employment_words:
                 # print(ew in doc_json["content"])
                 if ew in doc_json["content"]:
