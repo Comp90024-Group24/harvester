@@ -61,7 +61,7 @@ def streaming(urls, tokens, db):
                 'hiring', 'interview', 'resume', 'cv', 'application', 'salary', 'benefits', 'contract', 'promotion',
                 'training',
                 'skills', 'experience', 'office', 'workplace', 'colleague', 'team', 'performance', 'termination',
-                'resignation', 'job security', 'work-life balance', 'human resources']
+                'resignation', 'job security', 'work-life balance', 'human resources','finance','technology','education']
 #                 'finance', 'financial', 'bank', 'account', 'money', 'cash', 'wealth', 'rich', 'poor', 'stock',
 #                 'market', 'investment', 'investor', 'invest', 'trading', 'trade', 'trader', 'stock', 'market',
 #                 'stock', 'exchange', 'stock', 'broker', 'fund', 'gold', 'silver', 'asset', 'currency', 'banking',
