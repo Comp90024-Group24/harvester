@@ -3,7 +3,6 @@ from mastodon import Mastodon, StreamListener
 import json
 from mpi4py import MPI
 from textblob import TextBlob
-import os, json
 
 
 def streaming(urls, tokens, db):
@@ -11,16 +10,6 @@ def streaming(urls, tokens, db):
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     # size = comm.Get_size()
-
-    # indicate the db name
-    # db_name = 'mastodon_' + str(urls[rank][17:])
-    # db_name = 'mastodon_all'
-
-    # # if not exist, create one
-    # if db_name not in couch:
-    #     db = couch.create(db_name)
-    # else:
-    #     db = couch[db_name]
 
     server_url = urls[rank]
     server_token = tokens[rank]
@@ -94,31 +83,37 @@ def streaming(urls, tokens, db):
 
 
 
-            
-            # # print(wanted_json)
-
-            # print(f'{db_name} Document saved with ID: {doc_id} and revision: {doc_rev}')
+        
     # make it better with try-catch and error-handling
     # try:
     m.stream_public(Listener())
 
 if __name__ == "__main__":
+    print('start')
     # authentication
-    admin = os.environ['COUCHDB_ADMIN']
-    password = os.environ['COUCHDB_PWD']
-    ip = os.environ['COUCHDB_IP']
+    admin = 'user'
+    password = 'pwd'
+    ip = '172.26.134.204'
     url = f'http://{admin}:{password}@{ip}:5984/'
 
     # get couchdb instance
     couch = couchdb.Server(url)
+    
+    # indicate the db name
     db_name = 'mastodon_all_servers'
-    # db = None
-    # if not exist, create one
-    if db_name not in couch:
-        db = couch.create(db_name)
-    else:
-        db = couch[db_name]
-
-    mastodon_urls = os.environ['SERVERS_URLS'].split(', ')
-    mastodon_tokens = os.environ['MASTODON_ACCESS_TOKENS'].split(', ')
-    streaming(urls=mastodon_urls, tokens=mastodon_tokens, db=db)
+    # db_name = 'mastodon_test'
+    comm = MPI.COMM_WORLD
+    rank = comm.Get_rank()
+    MASTODON_ACCESS_TOKENS="Iiuvste6iNApoHM0RX0J5J_w_y-J52KvZYXeFZ7Mztc, JTOka0FBt1Dv3Y5ptiWQ2tIKTX1O4Y58JmH_Ob65HeQ"
+    SERVERS_URLS="https://mastodon.social, https://mastodon.au"
+    mastodon_urls = SERVERS_URLS.split(', ')
+    mastodon_tokens = MASTODON_ACCESS_TOKENS.split(', ')
+    db = None
+    if rank == 0:
+        # if not exist, create one
+        if db_name not in couch:
+            db = couch.create(db_name)
+        else:
+            db = couch[db_name]
+    if db is not None:
+        streaming(urls=mastodon_urls, tokens=mastodon_tokens, db=db)
